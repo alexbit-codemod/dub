@@ -12,7 +12,6 @@ import { prisma } from "@dub/prisma";
 import { waitUntil } from "@vercel/functions";
 import { authActionClient } from "../safe-action";
 
-
 // Ban a partner
 export const banPartnerAction = authActionClient
   .schema(banPartnerSchema)
