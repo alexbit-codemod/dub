@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { Message } from "@/lib/types";
 import { Check2, LoadingSpinner, Tooltip, useMediaQuery } from "@dub/ui";
 import { OG_AVATAR_URL, cn, formatDate } from "@dub/utils";
@@ -22,6 +23,8 @@ export function MessagesPanel({
   placeholder?: string;
   error?: any;
 }) {
+const t = useTranslations("messages-panel");
+
   const { isMobile } = useMediaQuery();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -112,14 +115,14 @@ export function MessagesPanel({
                           src={
                             sender?.image || `${OG_AVATAR_URL}${sender?.name}`
                           }
-                          alt={`${sender?.name} avatar`}
+                          alt={t('avatars.sender-alt-text', { "senderName": sender?.name })}
                           className="size-8 rounded-full"
                           draggable={false}
                         />
                         {programImage && !message.senderPartnerId && (
                           <img
                             src={programImage}
-                            alt="program logo"
+                            alt={t('avatars.program-logo-alt-text')}
                             className="absolute -bottom-0.5 -right-0.5 size-3.5 rounded-full border border-white"
                           />
                         )}
@@ -184,9 +187,7 @@ export function MessagesPanel({
           </div>
         </div>
       ) : error ? (
-        <div className="text-content-subtle flex size-full items-center justify-center text-sm font-medium">
-          Failed to load messages
-        </div>
+        <div className="text-content-subtle flex size-full items-center justify-center text-sm font-medium">{t('errors.failed-to-load')}</div>
       ) : (
         <div className="flex size-full items-center justify-center">
           <LoadingSpinner />

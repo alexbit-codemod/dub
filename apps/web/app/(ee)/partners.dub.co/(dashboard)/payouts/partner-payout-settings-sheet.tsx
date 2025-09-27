@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { updatePartnerPayoutSettingsAction } from "@/lib/actions/partners/update-partner-payout-settings";
 import {
@@ -61,6 +63,8 @@ function PartnerPayoutSettingsSheet(props: PartnerPayoutSettingsSheetProps) {
 function PartnerPayoutSettingsSheetInner({
   setShowPartnerPayoutSettingsSheet,
 }: PartnerPayoutSettingsSheetProps) {
+const t = useTranslations("partner-payout-settings");
+
   const { partner } = usePartnerProfile();
 
   const {
@@ -104,9 +108,7 @@ function PartnerPayoutSettingsSheetInner({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex h-full flex-col">
       <div className="flex h-16 items-center justify-between border-b border-neutral-200 px-6 py-4">
-        <Sheet.Title className="text-lg font-semibold">
-          Payout settings
-        </Sheet.Title>
+        <Sheet.Title className="text-lg font-semibold">{t('headings.sheet-title')}</Sheet.Title>
       </div>
 
       <div className="relative flex-1 overflow-y-auto">
@@ -119,9 +121,7 @@ function PartnerPayoutSettingsSheetInner({
             {/* Connected payout account */}
             <div className="space-y-3 pb-6">
               <div>
-                <h4 className="text-base font-semibold leading-6 text-neutral-900">
-                  Connected payout account
-                </h4>
+                <h4 className="text-base font-semibold leading-6 text-neutral-900">{t('headings.connected-account')}</h4>
               </div>
 
               {!partner?.payoutsEnabledAt ? (
@@ -136,13 +136,8 @@ function PartnerPayoutSettingsSheetInner({
               CONNECT_SUPPORTED_COUNTRIES.includes(partner.country) && (
                 <div className="space-y-6 py-6">
                   <div>
-                    <h4 className="text-base font-semibold leading-6 text-neutral-900">
-                      Minimum withdrawal amount
-                    </h4>
-                    <p className="text-sm font-medium text-neutral-500">
-                      Set the minimum amount for funds to be automatically
-                      withdrawn from Dub into your connected payout account.
-                    </p>
+                    <h4 className="text-base font-semibold leading-6 text-neutral-900">{t('headings.minimum-withdrawal')}</h4>
+                    <p className="text-sm font-medium text-neutral-500">{t('descriptions.minimum-withdrawal')}</p>
                   </div>
 
                   <div>
@@ -185,9 +180,7 @@ function PartnerPayoutSettingsSheetInner({
                             `${currencyFormatter(BELOW_MIN_WITHDRAWAL_FEE_CENTS / 100)} withdrawal fee for balances under ${currencyFormatter(MIN_WITHDRAWAL_AMOUNT_CENTS / 100)}. If you have any previously processed payouts, they will be automatically transferred to your connected bank account once the minimum withdrawal amount is reached.`
                           ) : (
                             <div className="flex items-center gap-1 text-xs font-normal leading-4 text-neutral-500">
-                              <PartyPopper className="size-4" />
-                              Free withdrawals unlocked
-                            </div>
+                              <PartyPopper className="size-4" />{t('messages.free-withdrawals-unlocked')}</div>
                           )}
                         </AnimatedSizeContainer>
                       }
@@ -199,18 +192,12 @@ function PartnerPayoutSettingsSheetInner({
             {/* Invoice details */}
             <div className="space-y-6 py-6">
               <div>
-                <h4 className="text-base font-semibold leading-6 text-neutral-900">
-                  Invoice details (optional)
-                </h4>
-                <p className="text-sm font-medium text-neutral-500">
-                  This information is added to your payout invoices.
-                </p>
+                <h4 className="text-base font-semibold leading-6 text-neutral-900">{t('headings.invoice-details')}</h4>
+                <p className="text-sm font-medium text-neutral-500">{t('descriptions.invoice-details')}</p>
               </div>
 
               <div>
-                <label className="text-sm font-medium text-neutral-900">
-                  Business name
-                </label>
+                <label className="text-sm font-medium text-neutral-900">{t('labels.business-name')}</label>
                 <div className="relative mt-1.5 rounded-md shadow-sm">
                   <input
                     autoFocus
@@ -221,9 +208,7 @@ function PartnerPayoutSettingsSheetInner({
               </div>
 
               <div>
-                <label className="text-sm font-medium text-neutral-900">
-                  Business address
-                </label>
+                <label className="text-sm font-medium text-neutral-900">{t('labels.business-address')}</label>
                 <TextareaAutosize
                   className="mt-1.5 block w-full rounded-md border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none focus:ring-neutral-500 sm:text-sm"
                   minRows={3}
@@ -232,9 +217,7 @@ function PartnerPayoutSettingsSheetInner({
               </div>
 
               <div>
-                <label className="text-sm font-medium text-neutral-900">
-                  Business tax ID
-                </label>
+                <label className="text-sm font-medium text-neutral-900">{t('labels.business-tax-id')}</label>
                 <div className="relative mt-1.5 rounded-md shadow-sm">
                   <input
                     className="block w-full rounded-md border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none focus:ring-neutral-500 sm:text-sm"
@@ -254,14 +237,14 @@ function PartnerPayoutSettingsSheetInner({
       <div className="flex items-center justify-end gap-2 border-t border-neutral-200 p-5">
         <Button
           variant="secondary"
-          text="Cancel"
+          text={t('buttons.cancel')}
           disabled={isPending}
           className="h-8 w-fit px-3"
           onClick={() => setShowPartnerPayoutSettingsSheet(false)}
         />
 
         <Button
-          text="Save"
+          text={t('buttons.save')}
           className="h-8 w-fit px-3"
           loading={isPending}
           disabled={!isDirty}

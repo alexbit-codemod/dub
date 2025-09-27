@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import AddEditIntegrationForm from "@/ui/oauth-apps/add-edit-integration-form";
 import { BackLink } from "@/ui/shared/back-link";
 import { MaxWidthWrapper } from "@dub/ui";
@@ -8,6 +9,8 @@ export default function NewIntegrationsPage({
 }: {
   params: { slug: string };
 }) {
+const t = useTranslations("new-integration-page");
+
   // this is only available for Dub workspace for now
   // we might open this up to other workspaces in the future
   if (params.slug !== "dub") {
@@ -15,9 +18,7 @@ export default function NewIntegrationsPage({
   }
   return (
     <MaxWidthWrapper className="grid max-w-screen-lg gap-8">
-      <BackLink href={`/${params.slug}/settings/integrations`}>
-        Back to integrations
-      </BackLink>
+      <BackLink href={`/${params.slug}/settings/integrations`}>{t('navigation.back-to-integrations')}</BackLink>
 
       <AddEditIntegrationForm
         integration={{

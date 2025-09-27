@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { constructPartnerLink } from "@/lib/partners/construct-partner-link";
 import useGroup from "@/lib/swr/use-group";
@@ -15,6 +17,8 @@ export function EmbedPreview({
 }: {
   program: ProgramWithLanderDataProps;
 }) {
+const t = useTranslations("partner-embed-preview");
+
   const id = useId();
 
   const { getValues } = useBrandingFormContext();
@@ -115,9 +119,7 @@ export function EmbedPreview({
                       letterSpacing="-.02em"
                       style={{ whiteSpace: "pre" }}
                     >
-                      <tspan x="48" y="65.818">
-                        Referral link
-                      </tspan>
+                      <tspan x="48" y="65.818">{t('referral-section.title')}</tspan>
                     </text>
                     <rect
                       width="283"
@@ -166,9 +168,7 @@ export function EmbedPreview({
                       letterSpacing="-.02em"
                       style={{ whiteSpace: "pre" }}
                     >
-                      <tspan x="384.482" y="109.091">
-                        Copy link
-                      </tspan>
+                      <tspan x="384.482" y="109.091">{t('referral-section.copy-button')}</tspan>
                     </text>
                     <text
                       xmlSpace="preserve"
@@ -178,9 +178,7 @@ export function EmbedPreview({
                       letterSpacing="-.02em"
                       style={{ whiteSpace: "pre" }}
                     >
-                      <tspan x="48" y="189.818">
-                        Rewards
-                      </tspan>
+                      <tspan x="48" y="189.818">{t('rewards.title')}</tspan>
                     </text>
                     <path
                       fill="#fff"
@@ -219,9 +217,7 @@ export function EmbedPreview({
                         letterSpacing="0em"
                         style={{ whiteSpace: "pre" }}
                       >
-                        <tspan x="890.901" y="259.696">
-                          Powered by
-                        </tspan>
+                        <tspan x="890.901" y="259.696">{t('branding.powered-by')}</tspan>
                       </text>
                       <path
                         fill="#171717"
@@ -412,9 +408,7 @@ export function EmbedPreview({
                     letterSpacing="0em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="40" y="325.727">
-                      Clicks
-                    </tspan>
+                    <tspan x="40" y="325.727">{t('metrics.clicks')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -478,9 +472,7 @@ export function EmbedPreview({
                     letterSpacing="0em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="262.333" y="325.727">
-                      Leads
-                    </tspan>
+                    <tspan x="262.333" y="325.727">{t('metrics.leads')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -536,9 +528,7 @@ export function EmbedPreview({
                     letterSpacing="0em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="484.667" y="325.727">
-                      Sales
-                    </tspan>
+                    <tspan x="484.667" y="325.727">{t('metrics.sales')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -610,9 +600,7 @@ export function EmbedPreview({
                     letterSpacing="0em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="723" y="325.727">
-                      Payouts
-                    </tspan>
+                    <tspan x="723" y="325.727">{t('metrics.payouts')}</tspan>
                   </text>
                   <path
                     fill="#fff"
@@ -630,9 +618,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="928.158" y="326.091">
-                      Settings
-                    </tspan>
+                    <tspan x="928.158" y="326.091">{t('payouts.settings-button')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -642,9 +628,7 @@ export function EmbedPreview({
                     letterSpacing="0em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="723" y="365.591">
-                      Upcoming
-                    </tspan>
+                    <tspan x="723" y="365.591">{t('payouts.upcoming')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -666,9 +650,7 @@ export function EmbedPreview({
                     letterSpacing="0em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="723" y="390.591">
-                      Total
-                    </tspan>
+                    <tspan x="723" y="390.591">{t('payouts.total')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -699,9 +681,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="24" y="458.591">
-                      Quickstart
-                    </tspan>
+                    <tspan x="24" y="458.591">{t('navigation.quickstart')}</tspan>
                   </text>
                   <path fill="#171717" d="M24 479.5h68v2H24z" />
                   <text
@@ -712,9 +692,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="108" y="458.591">
-                      Earnings
-                    </tspan>
+                    <tspan x="108" y="458.591">{t('navigation.earnings')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -724,9 +702,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="181" y="458.591">
-                      Links
-                    </tspan>
+                    <tspan x="181" y="458.591">{t('navigation.links')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -736,9 +712,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="231" y="458.591">
-                      Leaderboard
-                    </tspan>
+                    <tspan x="231" y="458.591">{t('navigation.leaderboard')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -748,9 +722,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="330" y="458.591">
-                      FAQ
-                    </tspan>
+                    <tspan x="330" y="458.591">{t('navigation.faq')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -760,9 +732,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="373" y="458.591">
-                      Resources
-                    </tspan>
+                    <tspan x="373" y="458.591">{t('navigation.resources')}</tspan>
                   </text>
                   <rect
                     width="982"
@@ -1142,9 +1112,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="137.667" y="699.818">
-                      Share your link
-                    </tspan>
+                    <tspan x="137.667" y="699.818">{t('share-section.title')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -1153,15 +1121,11 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="82.126" y="733.091">
-                      Sharing is caring! Recommend Dub{" "}
+                    <tspan x="82.126" y="733.091">{t('share-section.description-line1')}
                     </tspan>
-                    <tspan x="80.556" y="753.091">
-                      to all your friends, family, and social{" "}
+                    <tspan x="80.556" y="753.091">{t('share-section.description-line2')}
                     </tspan>
-                    <tspan x="162.694" y="773.091">
-                      followers.
-                    </tspan>
+                    <tspan x="162.694" y="773.091">{t('share-section.description-line3')}</tspan>
                   </text>
                   <path
                     fill="#171717"
@@ -1188,9 +1152,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="175.347" y="823.091">
-                      Copy link
-                    </tspan>
+                    <tspan x="175.347" y="823.091">{t('share-section.copy-button')}</tspan>
                   </text>
                   <rect
                     width="306.333"
@@ -1331,9 +1293,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="472.5" y="699.818">
-                      Success kit
-                    </tspan>
+                    <tspan x="472.5" y="699.818">{t('success-kit.title')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -1342,15 +1302,11 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="397.001" y="733.091">
-                      Make sure you get set up for success{" "}
+                    <tspan x="397.001" y="733.091">{t('success-kit.description-line1')}
                     </tspan>
-                    <tspan x="382.227" y="753.091">
-                      with the official brand files and supportive{" "}
+                    <tspan x="382.227" y="753.091">{t('success-kit.description-line2')}
                     </tspan>
-                    <tspan x="437.906" y="773.091">
-                      content and documents.
-                    </tspan>
+                    <tspan x="437.906" y="773.091">{t('success-kit.description-line3')}</tspan>
                   </text>
                   <path
                     fill="#171717"
@@ -1364,9 +1320,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="465.77" y="823.091">
-                      View resources
-                    </tspan>
+                    <tspan x="465.77" y="823.091">{t('success-kit.view-button')}</tspan>
                   </text>
                   <rect
                     width="306.333"
@@ -1425,9 +1379,7 @@ export function EmbedPreview({
                     letterSpacing="0em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="788.833" y="598.682">
-                      Payouts
-                    </tspan>
+                    <tspan x="788.833" y="598.682">{t('earnings-section.title')}</tspan>
                   </text>
                   <g
                     stroke="#A1A1A1"
@@ -1483,9 +1435,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="773.833" y="699.818">
-                      Receive earnings
-                    </tspan>
+                    <tspan x="773.833" y="699.818">{t('earnings-section.subtitle')}</tspan>
                   </text>
                   <text
                     xmlSpace="preserve"
@@ -1494,14 +1444,11 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="714.429" y="733.091">
-                      After your payouts are connected, you’ll{" "}
+                    <tspan x="714.429" y="733.091">{t('earnings-section.description-line1')}
                     </tspan>
-                    <tspan x="720.575" y="753.091">
-                      get paid out automatically for all your{" "}
+                    <tspan x="720.575" y="753.091">{t('earnings-section.description-line2')}
                     </tspan>
-                    <tspan x="819.751" y="773.091">
-                      sales.{" "}
+                    <tspan x="819.751" y="773.091">{t('earnings-section.description-line3')}
                     </tspan>
                   </text>
                   <path
@@ -1516,9 +1463,7 @@ export function EmbedPreview({
                     letterSpacing="-.02em"
                     style={{ whiteSpace: "pre" }}
                   >
-                    <tspan x="782.843" y="823.091">
-                      Connect payouts
-                    </tspan>
+                    <tspan x="782.843" y="823.091">{t('earnings-section.connect-button')}</tspan>
                   </text>
                   <defs>
                     <filter

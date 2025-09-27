@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { AnalyticsResponse } from "@/lib/analytics/types";
 import { editQueryString } from "@/lib/analytics/utils";
 import { AnalyticsContext } from "@/ui/analytics/analytics-provider";
@@ -16,6 +17,8 @@ import { useContext, useMemo } from "react";
 import useSWR from "swr";
 
 export function AnalyticsPartnersTable() {
+const t = useTranslations("analytics-partners-table");
+
   const { selectedTab, queryString } = useContext(AnalyticsContext);
 
   const { pagination, setPagination } = usePagination(10);
@@ -79,7 +82,7 @@ export function AnalyticsPartnersTable() {
             <div className="flex items-center gap-2">
               {country && (
                 <img
-                  alt={`${country} flag`}
+                  alt={t('accessibility.country-flag-alt', { "country": country })}
                   src={`https://hatscripts.github.io/circle-flags/flags/${country.toLowerCase()}.svg`}
                   className="size-4 shrink-0"
                 />
@@ -152,32 +155,28 @@ export function AnalyticsPartnersTable() {
     </div>
   ) : (
     <div className="text-content-muted flex h-36 items-center justify-center text-sm">
-      {topPartnersError ? "Failed to load partners." : "No partners found."}
+      {topPartnersError ? t('messages.partners-load-error-or-empty_0') : t('messages.partners-load-error-or-empty_1')}
     </div>
   );
 }
 
 function PartnerTableSkeleton() {
+const t = useTranslations("analytics-partners-table");
+
   const { selectedTab } = useContext(AnalyticsContext);
   return (
     <div className="bg-bg-default relative overflow-x-auto rounded-xl">
       <table className="group/table w-full border-separate border-spacing-0 text-sm transition-[border-spacing,margin-top] [&_tr:last-child>td]:border-b-transparent [&_tr>*:first-child]:border-l-transparent [&_tr>*:last-child]:border-r-transparent [&_tr]:border-b">
         <thead>
           <tr>
-            <th className="border-border-subtle border-b border-l-0 px-4 py-2.5 text-left font-medium text-neutral-900">
-              Partner
-            </th>
-            <th className="border-border-subtle border-b border-l-0 px-4 py-2.5 text-left font-medium text-neutral-900">
-              Location
-            </th>
+            <th className="border-border-subtle border-b border-l-0 px-4 py-2.5 text-left font-medium text-neutral-900">{t('table.headers.partner')}</th>
+            <th className="border-border-subtle border-b border-l-0 px-4 py-2.5 text-left font-medium text-neutral-900">{t('table.headers.location')}</th>
             <th className="border-border-subtle border-b border-l-0 px-4 py-2.5 text-left font-medium text-neutral-900">
               {capitalize(selectedTab)}
             </th>
             {selectedTab === "sales" && (
               <>
-                <th className="border-border-subtle border-b border-l-0 px-4 py-2.5 text-left font-medium text-neutral-900">
-                  Revenue
-                </th>
+                <th className="border-border-subtle border-b border-l-0 px-4 py-2.5 text-left font-medium text-neutral-900">{t('table.headers.revenue')}</th>
               </>
             )}
           </tr>

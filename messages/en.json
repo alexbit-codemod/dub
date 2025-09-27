@@ -1,0 +1,403 @@
+{
+  "input-select": {
+    "messages": {
+      "no-items-found": "No items found.",
+      "no-results-found": "No results found."
+    }
+  },
+  "webhook-failed-email": {
+    "preview": {
+      "webhook-failing": "Webhook is failing to deliver"
+    },
+    "alt": {
+      "dub-logo": "Dub"
+    },
+    "headings": {
+      "webhook-failing": "Webhook is failing to deliver"
+    },
+    "messages": {
+      "failure-warning": "Your webhook <component0>{webhook.url}</component0> has failed to deliver {webhookConsecutiveFailures} times and will be disabled after {webhookDisableThreshold} consecutive failures.",
+      "review-instructions": "Please review the webhook details and update the URL if necessary to restore functionality."
+    },
+    "buttons": {
+      "edit-webhook": "Edit Webhook"
+    }
+  },
+  "partner-application-approved": {
+    "preview": {
+      "application-approved": "Your application to join {programName}''s partner program has been approved!"
+    },
+    "headings": {
+      "congratulations": "Congratulations, {partnerName}!",
+      "getting-started": "Getting Started"
+    },
+    "messages": {
+      "application-approved-description": "Your application to join <component0>{programName}''s</component0> partner program has been approved. You can now start promoting their products and earning commissions.",
+      "support-contact": "If you have any questions about the program please don't hesitate to <component0>reach out to the {programName} team ↗</component0> .",
+      "partnership-excitement": "We're excited to have you as a partner and look forward to your success!"
+    },
+    "instructions": {
+      "find-referral-links": "1. Find your unique referral links in the <component0>Links</component0>  section.",
+      "share-referral-links": "2. Share your referral links on your website, blog, social media, or email newsletters.",
+      "track-performance-earnings": "3. Track your <component0>link performance</component0>  and <component1>earnings</component1>  in real-time.",
+      "learn-dashboard-navigation": "4. Learn how to <component0>navigate the program dashboard</component0>  and get the most out of your program.",
+      "connect-stripe-payouts": "5. Connect your Stripe account to <component0>enable payouts</component0> ."
+    },
+    "buttons": {
+      "go-to-dashboard": "Go to your dashboard"
+    }
+  },
+  "domain-expired-email": {
+    "preview": {
+      "text": "Domain expiration"
+    },
+    "brand": {
+      "name": "Dub"
+    },
+    "headings": {
+      "main-title": "Domain expiration"
+    },
+    "messages": {
+      "expiration-intro": "The following",
+      "expiration-details": " have expired and are no longer available to use with your workspace <component0>{workspace.name}</component0> .",
+      "recovery-intro": "If you own any of these",
+      "recovery-instructions": "  again in the future, you can add them to your workspace anytime in the <component0>domain settings page</component0> ."
+    },
+    "table": {
+      "headers": {
+        "domain": "Domain",
+        "expired-date": "Expired on"
+      }
+    }
+  },
+  "create-workspace-form": {
+    "labels": {
+      "workspace-name": "Workspace name",
+      "workspace-slug": "Workspace slug",
+      "workspace-logo": "Workspace logo"
+    },
+    "placeholders": {
+      "workspace-name": "Acme, Inc.",
+      "workspace-slug": "acme"
+    },
+    "prefixes": {
+      "workspace-slug-domain": "app.{processEnvNextPublicAppDomain}"
+    },
+    "descriptions": {
+      "slug-changeable": "You can change this later in your workspace settings.",
+      "logo-recommended-size": "Recommended size: 160x160px"
+    },
+    "buttons": {
+      "upload-image": "Upload image",
+      "create-workspace": "Create workspace"
+    }
+  },
+  "program-color-picker": {
+    "accessibility": {
+      "select-color-instruction": "Select a color"
+    },
+    "inputs": {
+      "color-placeholder": "# Default"
+    }
+  },
+  "commissions-block": {
+    "errors": {
+      "failed-to-load-data": "Failed to load data"
+    },
+    "empty-states": {
+      "no-commissions-found": "No commissions found"
+    },
+    "accessibility": {
+      "partner-avatar-alt": "{partnerName} avatar"
+    }
+  },
+  "partner-embed-preview": {
+    "referral-section": {
+      "title": "Referral link",
+      "copy-button": "Copy link"
+    },
+    "rewards": {
+      "title": "Rewards"
+    },
+    "branding": {
+      "powered-by": "Powered by"
+    },
+    "metrics": {
+      "clicks": "Clicks",
+      "leads": "Leads",
+      "sales": "Sales",
+      "payouts": "Payouts"
+    },
+    "payouts": {
+      "settings-button": "Settings",
+      "upcoming": "Upcoming",
+      "total": "Total"
+    },
+    "navigation": {
+      "quickstart": "Quickstart",
+      "earnings": "Earnings",
+      "links": "Links",
+      "leaderboard": "Leaderboard",
+      "faq": "FAQ",
+      "resources": "Resources"
+    },
+    "share-section": {
+      "title": "Share your link",
+      "description-line1": "Sharing is caring! Recommend Dub",
+      "description-line2": "to all your friends, family, and social",
+      "description-line3": "followers.",
+      "copy-button": "Copy link"
+    },
+    "success-kit": {
+      "title": "Success kit",
+      "description-line1": "Make sure you get set up for success",
+      "description-line2": "with the official brand files and supportive",
+      "description-line3": "content and documents.",
+      "view-button": "View resources"
+    },
+    "earnings-section": {
+      "title": "Payouts",
+      "subtitle": "Receive earnings",
+      "description-line1": "After your payouts are connected, you’ll",
+      "description-line2": "get paid out automatically for all your",
+      "description-line3": "sales.",
+      "connect-button": "Connect payouts"
+    }
+  },
+  "ban-partner-modal": {
+    "warnings": {
+      "permanent-ban-confirmation": "This will permanently ban the partner, disable all their active links, and cancel all pending payouts. This action is not reversible. <component0>Are you sure you want to continue?</component0>"
+    },
+    "labels": {
+      "ban-reason": "Ban reason",
+      "verification-instruction": "To verify, type <component0>confirm ban {partnerName}</component0> below"
+    },
+    "placeholders": {
+      "select-reason": "Select a reason",
+      "confirmation-text": "confirm ban {partnerName}"
+    },
+    "buttons": {
+      "confirm-ban": "Confirm ban"
+    }
+  },
+  "remove-scim-modal": {
+    "alt-text": {
+      "workspace-logo": "Workspace logo",
+      "provider-logo": "{currentProviderName} logo"
+    },
+    "headings": {
+      "remove-directory": "Remove SCIM Directory"
+    },
+    "messages": {
+      "confirmation-warning": "This will remove the currently configured SCIM directory from your workspace. Are you sure you want to continue?"
+    },
+    "labels": {
+      "provider-scim-title": "{currentProviderName} SCIM"
+    },
+    "descriptions": {
+      "provider-configured": "{currentProviderName} SCIM is configured"
+    },
+    "buttons": {
+      "confirm-remove": "Confirm remove"
+    }
+  },
+  "dot-link-offer-modal": {
+    "headings": {
+      "get-more-from-links": "Get more from your short links"
+    },
+    "descriptions": {
+      "claim-free-domain": "Increase the click-through rates for your short links by claiming a <component0>1-year free .link domain</component0>  on Dub."
+    },
+    "buttons": {
+      "decline-offer": "No thanks, maybe later"
+    },
+    "legal": {
+      "terms-agreement": "By claiming your .link domain, you agree to our <component0>terms</component0> ."
+    },
+    "pricing": {
+      "renewal-cost": " After the first year, your renewal is $12/year."
+    },
+    "domain": {
+      "link-extension": ".link"
+    }
+  },
+  "messages-panel": {
+    "avatars": {
+      "sender-alt-text": "{senderName} avatar",
+      "program-logo-alt-text": "program logo"
+    },
+    "errors": {
+      "failed-to-load": "Failed to load messages"
+    }
+  },
+  "link-analytics-badge": {
+    "messages": {
+      "last-clicked-status_0": "Last clicked {timeAgoLinkLastClickedWithAgoTrue}",
+      "last-clicked-status_1": "No clicks yet"
+    },
+    "buttons": {
+      "share-dashboard-action_0": "Edit sharing",
+      "share-dashboard-action_1": "Share dashboard"
+    }
+  },
+  "stripe-integration-guide": {
+    "status": {
+      "installed": "Stripe integration installed"
+    },
+    "labels": {
+      "required-step": "Required first step"
+    },
+    "buttons": {
+      "install": " Install Stripe integration"
+    }
+  },
+  "customer-details-column": {
+    "headings": {
+      "details": "Details",
+      "customer-since": "Customer since",
+      "external-id": "External ID",
+      "lifetime-value": "Lifetime value",
+      "referral-link": "Referral link",
+      "utm": "UTM"
+    }
+  },
+  "analytics-events-row-menu": {
+    "actions": {
+      "copy-event-id": "Copy event ID",
+      "copy-click-id": "Copy click ID"
+    }
+  },
+  "onboarding-domain-selector": {
+    "options": {
+      "custom-domain": {
+        "title": "Connect a custom domain",
+        "description": "Already have a domain? Connect it to Dub in just a few clicks"
+      },
+      "free-domain": {
+        "title": "Claim a free <component0>.link</component0>  domain",
+        "description": "Register a domain like <component0> .link</component0>  – free for 1 year"
+      }
+    },
+    "badges": {
+      "paid-plan-required": " Paid plan required"
+    }
+  },
+  "new-integration-page": {
+    "navigation": {
+      "back-to-integrations": "Back to integrations"
+    }
+  },
+  "publishable-key-form": {
+    "headings": {
+      "publishable-key": "Publishable Key"
+    },
+    "descriptions": {
+      "client-side-tracking": "Use this key for client-side conversion tracking. <component0>Learn more.</component0>"
+    },
+    "buttons": {
+      "generate-key": "Generate Key",
+      "regenerate": "Regenerate",
+      "revoke": "Revoke"
+    },
+    "messages": {
+      "no-key-configured": "No publishable key configured"
+    }
+  },
+  "partner-nav": {
+    "links": {
+      "commissions": "Commissions"
+    }
+  },
+  "group-default-links": {
+    "headings": {
+      "default-links": "Default links",
+      "empty-state": "Default links"
+    },
+    "descriptions": {
+      "default-links-purpose": "Links that are automatically created for each partner in this group"
+    },
+    "buttons": {
+      "create-link": "Create link",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "messages": {
+      "delete-confirmation": "Are you sure you want to delete <component0>{getPrettyUrl(getUrlWithoutUTMParams(link.url))}</component0>?",
+      "no-links-created": "No default links have been created yet"
+    },
+    "warnings": {
+      "delete-consequences": " This won't affect any existing partner links, but if you recreate the link, it could result in duplicate links for partners in this group."
+    },
+    "suggestions": {
+      "edit-instead": " If you want to change the default link, try editing it instead."
+    }
+  },
+  "analytics-partners-table": {
+    "accessibility": {
+      "country-flag-alt": "{country} flag"
+    },
+    "messages": {
+      "partners-load-error-or-empty_0": "Failed to load partners.",
+      "partners-load-error-or-empty_1": "No partners found."
+    },
+    "table": {
+      "headers": {
+        "partner": "Partner",
+        "location": "Location",
+        "revenue": "Revenue"
+      }
+    }
+  },
+  "partner-onboarding-layout": {
+    "labels": {
+      "partners": "Partners"
+    }
+  },
+  "partner-payout-settings": {
+    "headings": {
+      "sheet-title": "Payout settings",
+      "connected-account": "Connected payout account",
+      "minimum-withdrawal": "Minimum withdrawal amount",
+      "invoice-details": "Invoice details (optional)"
+    },
+    "descriptions": {
+      "minimum-withdrawal": "Set the minimum amount for funds to be automatically withdrawn from Dub into your connected payout account.",
+      "invoice-details": "This information is added to your payout invoices."
+    },
+    "messages": {
+      "free-withdrawals-unlocked": " Free withdrawals unlocked"
+    },
+    "labels": {
+      "business-name": "Business name",
+      "business-address": "Business address",
+      "business-tax-id": "Business tax ID"
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "save": "Save"
+    }
+  },
+  "referrals-embed-page": {
+    "buttons": {
+      "copy-link-state_0": "Copied link",
+      "copy-link-state_1": "Copy link",
+      "create-link": "Create a link",
+      "toggle-quickstart-guide": "{showQuickstart,select,true{Hide} false{Show}} starting guide"
+    },
+    "headings": {
+      "rewards": "Rewards"
+    },
+    "links": {
+      "view-terms": "View terms ↗"
+    },
+    "labels": {
+      "powered-by": "Powered by",
+      "referral-link": "Referral link"
+    }
+  },
+  "admin-commissions-dashboard": {
+    "messages": {
+      "no-data-available": "No data available."
+    }
+  }
+}

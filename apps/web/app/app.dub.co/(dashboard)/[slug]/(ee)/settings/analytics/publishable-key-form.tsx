@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { clientAccessCheck } from "@/lib/api/tokens/permissions";
 import useWorkspace from "@/lib/swr/use-workspace";
@@ -10,6 +12,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export const PublishableKeyForm = () => {
+const t = useTranslations("publishable-key-form");
+
   const { id, publishableKey, mutate, role } = useWorkspace();
   const [processing, setProcessing] = useState(false);
 
@@ -92,23 +96,20 @@ export const PublishableKeyForm = () => {
     <div className="rounded-lg border border-neutral-200 p-5">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-1">
-          <h2 className="text-xl font-semibold tracking-tight text-black">
-            Publishable Key
-          </h2>
-          <p className="text-sm text-neutral-500">
-            Use this key for client-side conversion tracking.{" "}
-            <Link
+          <h2 className="text-xl font-semibold tracking-tight text-black">{t('headings.publishable-key')}</h2>
+          <p className="text-sm text-neutral-500">{t.rich('descriptions.client-side-tracking', {
+      component0: (chunks) => <Link
               href="https://dub.co/docs/sdks/client-side/features/conversion-tracking"
               target="_blank"
               className="underline transition-colors hover:text-neutral-800"
-            >
-              Learn more.
-            </Link>
+            >{chunks}</Link>
+    })}
+            
           </p>
         </div>
         {!publishableKey && (
           <Button
-            text="Generate Key"
+            text={t('buttons.generate-key')}
             className="h-8 w-fit px-3 sm:shrink-0"
             onClick={() => setShowGenerateModal(true)}
             loading={processing}
@@ -128,7 +129,7 @@ export const PublishableKeyForm = () => {
             </div>
             <div className="flex w-fit items-center gap-2 sm:shrink-0">
               <Button
-                text="Regenerate"
+                text={t('buttons.regenerate')}
                 variant="secondary"
                 onClick={() => setShowGenerateModal(true)}
                 loading={processing}
@@ -136,7 +137,7 @@ export const PublishableKeyForm = () => {
                 className="h-7 w-fit flex-1 px-2 text-xs sm:flex-none"
               />
               <Button
-                text="Revoke"
+                text={t('buttons.revoke')}
                 variant="danger"
                 onClick={() => setShowRevokeModal(true)}
                 loading={processing}
@@ -149,9 +150,7 @@ export const PublishableKeyForm = () => {
       ) : (
         <div className="mt-5">
           <div className="flex items-center justify-center rounded-md border border-dashed border-neutral-300 p-8">
-            <p className="text-sm text-neutral-500">
-              No publishable key configured
-            </p>
+            <p className="text-sm text-neutral-500">{t('messages.no-key-configured')}</p>
           </div>
         </div>
       )}

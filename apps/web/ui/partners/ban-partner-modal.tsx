@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { banPartnerAction } from "@/lib/actions/partners/ban-partner";
 import { mutatePrefix } from "@/lib/swr/mutate";
 import useWorkspace from "@/lib/swr/use-workspace";
@@ -33,6 +34,8 @@ function BanPartnerModal({
   setShowBanPartnerModal: Dispatch<SetStateAction<boolean>>;
   partner: Pick<PartnerProps, "id" | "name" | "email" | "image">;
 }) {
+const t = useTranslations("ban-partner-modal");
+
   const { id: workspaceId } = useWorkspace();
 
   const {
@@ -100,12 +103,10 @@ function BanPartnerModal({
           </p>
         </div>
 
-        <p className="text-balance text-center text-sm font-normal leading-5 text-neutral-600">
-          This will permanently ban the partner, disable all their active links,
-          and cancel all pending payouts. This action is not reversible.{" "}
-          <span className="font-semibold">
-            Are you sure you want to continue?
-          </span>
+        <p className="text-balance text-center text-sm font-normal leading-5 text-neutral-600">{t.rich('warnings.permanent-ban-confirmation', {
+      component0: (chunks) => <span className="font-semibold">{chunks}</span>
+    })}
+          
         </p>
       </div>
 
@@ -115,7 +116,7 @@ function BanPartnerModal({
       >
         <div>
           <label htmlFor="reason" className="flex items-center space-x-2">
-            <h2 className="text-sm font-medium text-neutral-900">Ban reason</h2>
+            <h2 className="text-sm font-medium text-neutral-900">{t('labels.ban-reason')}</h2>
           </label>
           <div className="relative mt-2 rounded-md shadow-sm">
             <select
@@ -127,9 +128,7 @@ function BanPartnerModal({
                 required: true,
               })}
             >
-              <option value="" disabled>
-                Select a reason
-              </option>
+              <option value="" disabled>{t('placeholders.select-reason')}</option>
               {Object.entries(BAN_PARTNER_REASONS).map(([key, value]) => (
                 <option value={key} key={key}>
                   {value}
@@ -141,9 +140,10 @@ function BanPartnerModal({
 
         <div>
           <label htmlFor="name" className="flex items-center space-x-2">
-            <h2 className="text-sm font-medium text-neutral-900">
-              To verify, type <strong>confirm ban {partner.name}</strong> below
-            </h2>
+            <h2 className="text-sm font-medium text-neutral-900">{t.rich('labels.verification-instruction', {
+      partnerName,
+      component0: (chunks) => <strong>{chunks}</strong>
+    })}</h2>
           </label>
           <div className="relative mt-2 rounded-md shadow-sm">
             <input
@@ -151,7 +151,7 @@ function BanPartnerModal({
                 "block w-full rounded-md border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none focus:ring-neutral-500 sm:text-sm",
                 errors.confirm && "border-red-600",
               )}
-              placeholder={`confirm ban ${partner.name}`}
+              placeholder={t('placeholders.confirmation-text', { "partnerName": partner.name })}
               type="text"
               autoComplete="off"
               {...register("confirm", {
@@ -165,7 +165,7 @@ function BanPartnerModal({
           type="submit"
           className="w-full"
           variant="danger"
-          text="Confirm ban"
+          text={t('buttons.confirm-ban')}
           disabled={isDisabled}
           loading={isPending}
         />

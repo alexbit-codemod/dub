@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { OnboardingStep } from "@/lib/onboarding/types";
 import { Button, Crown } from "@dub/ui";
@@ -9,6 +11,8 @@ import { LaterButton } from "../../later-button";
 import { useOnboardingProgress } from "../../use-onboarding-progress";
 
 export function DefaultDomainSelector() {
+const t = useTranslations("onboarding-domain-selector");
+
   const searchParams = useSearchParams();
   const workspaceSlug = searchParams.get("workspace");
 
@@ -18,33 +22,26 @@ export function DefaultDomainSelector() {
         <DomainOption
           step="domain/custom"
           icon="https://assets.dub.co/icons/link.webp"
-          title="Connect a custom domain"
-          description="Already have a domain? Connect it to Dub in just a few clicks"
+          title={t('options.custom-domain.title')}
+          description={t('options.custom-domain.description')}
           cta="Connect domain"
         />
         <DomainOption
           step="domain/register"
           icon="https://assets.dub.co/icons/crown.webp"
           title={
-            <>
-              Claim a free{" "}
-              <span className="rounded border border-neutral-800/10 bg-neutral-100 px-1 py-0.5 font-mono text-xs">
-                .link
-              </span>{" "}
-              domain
-            </>
+            <>{t.rich('options.free-domain.title', {
+      component0: (chunks) => <span className="rounded border border-neutral-800/10 bg-neutral-100 px-1 py-0.5 font-mono text-xs">{chunks}</span>
+    })}
+              </>
           }
           description={
-            <>
-              Register a domain like{" "}
-              <span className="font-mono font-semibold text-neutral-900">
-                {workspaceSlug && workspaceSlug.length < 8
-                  ? workspaceSlug
-                  : "company"}
-                .link
-              </span>{" "}
-              – free for 1 year
-            </>
+            <>{t.rich('options.free-domain.description', {
+      workspaceSlug,
+      component0: (chunks) => <span className="font-mono font-semibold text-neutral-900">
+                </span>
+    })}
+              </>
           }
           cta="Claim .link domain"
           paidPlanRequired
@@ -72,14 +69,14 @@ function DomainOption({
   cta: string;
   paidPlanRequired?: boolean;
 }) {
+const t = useTranslations("onboarding-domain-selector");
+
   const { continueTo, isLoading, isSuccessful } = useOnboardingProgress();
   return (
     <div className="relative flex h-full flex-col items-center gap-6 rounded-xl border border-neutral-300 p-8 pt-10 transition-all">
       {paidPlanRequired && (
         <div className="absolute right-2 top-2 flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-100 px-2.5 py-0.5 text-xs font-medium text-neutral-600">
-          <Crown className="size-3" />
-          Paid plan required
-        </div>
+          <Crown className="size-3" />{t('badges.paid-plan-required')}</div>
       )}
       <div className="relative size-36">
         <Image

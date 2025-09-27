@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { formatDateTooltip } from "@/lib/analytics/format-date-tooltip";
 import { AnalyticsLoadingSpinner } from "@/ui/analytics/analytics-loading-spinner";
@@ -23,6 +25,8 @@ type Tab = {
 };
 
 export default function CommissionsPageClient() {
+const t = useTranslations("admin-commissions-dashboard");
+
   const { queryParams, getQueryString, searchParamsObj } = useRouterStuff();
   const { interval, start, end } = searchParamsObj;
 
@@ -253,9 +257,7 @@ export default function CommissionsPageClient() {
                   />
                 </TimeSeriesChart>
               ) : (
-                <div className="text-center text-sm text-neutral-600">
-                  No data available.
-                </div>
+                <div className="text-center text-sm text-neutral-600">{t('messages.no-data-available')}</div>
               )
             ) : (
               <AnalyticsLoadingSpinner />

@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { constructPartnerLink } from "@/lib/partners/construct-partner-link";
 import { QueryLinkStructureHelpText } from "@/lib/partners/query-link-structure-help-text";
@@ -69,6 +71,8 @@ export function ReferralsEmbedPageClient({
   themeOptions: ThemeOptions;
   dynamicHeight: boolean;
 }) {
+const t = useTranslations("referrals-embed-page");
+
   const resources = programResourcesSchema.parse(
     program.resources ?? { logos: [], colors: [], files: [] },
   );
@@ -127,9 +131,7 @@ export function ReferralsEmbedPageClient({
             color={program.brandColor}
             embed
           />
-          <span className="text-content-emphasis text-base font-semibold">
-            Referral link
-          </span>
+          <span className="text-content-emphasis text-base font-semibold">{t('labels.referral-link')}</span>
           <div className="xs:flex-row xs:items-center relative mt-3 flex flex-col gap-2 sm:max-w-[50%]">
             <input
               type="text"
@@ -161,7 +163,7 @@ export function ReferralsEmbedPageClient({
                     </div>
                   </div>
                 }
-                text={copied ? "Copied link" : "Copy link"}
+                text={copied ? t('buttons.copy-link-state_0') : t('buttons.copy-link-state_1')}
                 className="xs:w-fit"
                 onClick={() => {
                   copyToClipboard(partnerLink);
@@ -169,7 +171,7 @@ export function ReferralsEmbedPageClient({
               />
             ) : (
               <Button
-                text="Create a link"
+                text={t('buttons.create-link')}
                 onClick={() => {
                   setSelectedTab("Links");
                 }}
@@ -184,17 +186,13 @@ export function ReferralsEmbedPageClient({
 
           <div className="mt-12 sm:max-w-[50%]">
             <div className="flex items-end justify-between">
-              <span className="text-content-emphasis text-base font-semibold leading-none">
-                Rewards
-              </span>
+              <span className="text-content-emphasis text-base font-semibold leading-none">{t('headings.rewards')}</span>
               {program.termsUrl && (
                 <a
                   href={program.termsUrl}
                   target="_blank"
                   className="text-content-subtle text-xs font-medium leading-none underline-offset-2 hover:underline"
-                >
-                  View terms ↗
-                </a>
+                >{t('links.view-terms')}</a>
               )}
             </div>
             <div className="text-content-emphasis relative mt-4 text-lg">
@@ -207,9 +205,7 @@ export function ReferralsEmbedPageClient({
               target="_blank"
               className="hover:text-content-default text-content-subtle bg-bg-default border-border-subtle flex w-fit items-center gap-1.5 rounded-md border px-2 py-1 transition-colors duration-75"
             >
-              <p className="whitespace-nowrap text-xs font-medium leading-none">
-                Powered by
-              </p>
+              <p className="whitespace-nowrap text-xs font-medium leading-none">{t('labels.powered-by')}</p>
               <Wordmark className="text-content-emphasis h-3.5" />
             </a>
           </div>
@@ -287,6 +283,8 @@ function Menu({
   showQuickstart: boolean;
   setShowQuickstart: (value: boolean) => void;
 }) {
+const t = useTranslations("referrals-embed-page");
+
   const [openPopover, setOpenPopover] = useState(false);
 
   return (
@@ -294,7 +292,7 @@ function Menu({
       content={
         <div className="grid w-full grid-cols-1 gap-px p-2 sm:w-48">
           <Button
-            text={`${showQuickstart ? "Hide" : "Show"} starting guide`}
+            text={t('buttons.toggle-quickstart-guide')}
             variant="outline"
             onClick={() => {
               setOpenPopover(false);

@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { cn } from "@dub/utils";
 import {
   flip,
@@ -80,6 +81,8 @@ export function InputSelect({
   inputAttrs?: InputHTMLAttributes<HTMLInputElement>;
   noItemsElement?: ReactNode;
 }) {
+const t = useTranslations("input-select");
+
   const { isMobile } = useMediaQuery();
 
   const commandRef = useRef<HTMLDivElement | null>(null);
@@ -224,14 +227,10 @@ export function InputSelect({
                       (noItemsElement ? (
                         <div>{noItemsElement}</div>
                       ) : (
-                        <p className="px-4 py-2 text-sm text-neutral-600">
-                          No items found.
-                        </p>
+                        <p className="px-4 py-2 text-sm text-neutral-600">{t('messages.no-items-found')}</p>
                       ))}
                     {inputValue !== "" && (
-                      <Command.Empty className="px-4 py-2 text-sm text-neutral-600">
-                        No results found.
-                      </Command.Empty>
+                      <Command.Empty className="px-4 py-2 text-sm text-neutral-600">{t('messages.no-results-found')}</Command.Empty>
                     )}
                     <SelectorList items={filteredItems} />
                   </Command.List>
@@ -272,14 +271,10 @@ export function InputSelect({
                     (noItemsElement ? (
                       <div>{noItemsElement}</div>
                     ) : (
-                      <p className="px-4 py-2 text-sm text-neutral-600">
-                        No items found.
-                      </p>
+                      <p className="px-4 py-2 text-sm text-neutral-600">{t('messages.no-items-found')}</p>
                     ))}
                   {inputValue !== "" && (
-                    <Command.Empty className="px-4 py-2 text-sm text-neutral-600">
-                      No results found.
-                    </Command.Empty>
+                    <Command.Empty className="px-4 py-2 text-sm text-neutral-600">{t('messages.no-results-found')}</Command.Empty>
                   )}
                 </Command.List>
                 <SelectorList items={filteredItems} />

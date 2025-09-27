@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import useIntegrations from "@/lib/swr/use-integrations";
 import useWorkspace from "@/lib/swr/use-workspace";
 import {
@@ -11,6 +12,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function InstallStripeIntegrationButton() {
+const t = useTranslations("stripe-integration-guide");
+
   const { slug: workspaceSlug } = useWorkspace();
 
   const [isClicked, setIsClicked] = useState(false);
@@ -47,13 +50,11 @@ export function InstallStripeIntegrationButton() {
         ) : isEnabled ? (
           <div className="flex items-center justify-center gap-2 text-xs font-medium text-green-800">
             <CircleCheck className="size-3.5" />
-            <span>Stripe integration installed</span>
+            <span>{t('status.installed')}</span>
           </div>
         ) : (
           <>
-            <p className="text-content-default text-center text-xs font-medium">
-              Required first step
-            </p>
+            <p className="text-content-default text-center text-xs font-medium">{t('labels.required-step')}</p>
             <Link
               href={`/${workspaceSlug}/settings/integrations/stripe`}
               target="_blank"
@@ -64,9 +65,7 @@ export function InstallStripeIntegrationButton() {
             >
               {isClicked && (
                 <LoadingCircle className="size-4 opacity-60 mix-blend-screen" />
-              )}
-              Install Stripe integration
-            </Link>
+              )}{t('buttons.install')}</Link>
           </>
         )}
       </div>
