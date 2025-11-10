@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { CustomerActivityResponse, CustomerProps } from "@/lib/types";
 import { CopyButton, TimestampTooltip, UTM_PARAMETERS } from "@dub/ui";
 import {
@@ -28,6 +29,8 @@ export function CustomerDetailsColumn({
   customerActivity?: CustomerActivityResponse;
   isCustomerActivityLoading: boolean;
 }) {
+const t = useTranslations("customer-details-column");
+
   const { slug, programSlug } = useParams();
 
   const link = customerActivity?.link;
@@ -46,7 +49,7 @@ export function CustomerDetailsColumn({
   return (
     <div className="grid grid-cols-1 gap-6 overflow-hidden whitespace-nowrap text-sm text-neutral-900 min-[320px]:grid-cols-2 lg:grid-cols-1">
       <div className="flex flex-col gap-2">
-        <DetailHeading>Details</DetailHeading>
+        <DetailHeading>{t('headings.details')}</DetailHeading>
         {customer ? (
           customer.country && (
             <ConditionalLink
@@ -121,7 +124,7 @@ export function CustomerDetailsColumn({
       </div>
 
       <div className="flex flex-col gap-2">
-        <DetailHeading>Customer since</DetailHeading>
+        <DetailHeading>{t('headings.customer-since')}</DetailHeading>
         {customer ? (
           <TimestampTooltip
             timestamp={customer.createdAt}
@@ -143,7 +146,7 @@ export function CustomerDetailsColumn({
 
       {customer?.externalId && (
         <div className="flex flex-col gap-2">
-          <DetailHeading>External ID</DetailHeading>
+          <DetailHeading>{t('headings.external-id')}</DetailHeading>
           {
             <div className="flex items-center gap-1">
               <span className="truncate">{customer.externalId}</span>
@@ -159,22 +162,23 @@ export function CustomerDetailsColumn({
       )}
 
       <div className="flex flex-col gap-2">
-        <DetailHeading>Lifetime value</DetailHeading>
+        <DetailHeading>{t('headings.lifetime-value')}</DetailHeading>
         {!customer || isCustomerActivityLoading ? (
           <div className="h-5 w-12 animate-pulse rounded-md bg-neutral-100" />
         ) : (
           <span>
-            {customerActivity?.ltv !== undefined
+            {customerActivity?.ltv !== undefined 
               ? currencyFormatter(customerActivity.ltv / 100, {
                   trailingZeroDisplay: "stripIfInteger",
                 })
-              : "-"}
+              : t('values.no-lifetime-value')
+            }
           </span>
         )}
       </div>
 
       <div className="flex flex-col gap-2">
-        <DetailHeading>Referral link</DetailHeading>
+        <DetailHeading>{t('headings.referral-link')}</DetailHeading>
         {!customer || isCustomerActivityLoading ? (
           <div className="h-5 w-12 animate-pulse rounded-md bg-neutral-100" />
         ) : link ? (
@@ -196,7 +200,7 @@ export function CustomerDetailsColumn({
 
       {utmParams && Boolean(utmParams.length) && (
         <div className="flex flex-col gap-2">
-          <DetailHeading>UTM</DetailHeading>
+          <DetailHeading>{t('headings.utm')}</DetailHeading>
           <div className="grid w-full grid-cols-[min-content,minmax(0,1fr)] gap-x-4 gap-y-2 overflow-hidden">
             {utmParams.map(({ key, label, value }) => (
               <Fragment key={key}>

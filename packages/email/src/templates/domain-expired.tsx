@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { DUB_WORDMARK, formatDate, pluralize } from "@dub/utils";
 import {
   Body,
@@ -43,36 +44,32 @@ export default function DomainExpired({
     expiresAt: Date;
   }[];
 }) {
+const t = useTranslations("domain-expired-email");
+
   return (
     <Html>
       <Head />
-      <Preview>Domain expiration</Preview>
+      <Preview>{t('preview.text')}</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white font-sans">
           <Container className="mx-auto my-10 max-w-[600px] px-5 py-5">
             <Section className="mt-8">
-              <Img src={DUB_WORDMARK} height="32" alt="Dub" />
+              <Img src={DUB_WORDMARK} height="32" alt={t('brand.name')} />
             </Section>
 
-            <Heading className="mx-0 mb-5 mt-10 p-0 text-lg font-semibold text-neutral-800">
-              Domain expiration
-            </Heading>
+            <Heading className="mx-0 mb-5 mt-10 p-0 text-lg font-semibold text-neutral-800">{t('headings.main-title')}</Heading>
 
             <Text className="text-sm leading-6 text-neutral-600">
-              The following {pluralize("domain", domains.length)} have expired
-              and are no longer available to use with your workspace{" "}
-              <span className="font-semibold text-black">{workspace.name}</span>
-              .
+              {t.rich('messages.expiration-notice', {
+                domainsLength: domains.length,
+                component0: (chunks) => <span className="font-semibold text-black">{chunks}</span>
+              })}
             </Text>
 
             <Section>
               <Row className="pb-2">
-                <Column align="left" className="text-sm text-neutral-500">
-                  Domain
-                </Column>
-                <Column align="right" className="text-sm text-neutral-500">
-                  Expired on
-                </Column>
+                <Column align="left" className="text-sm text-neutral-500">{t('table.headers.domain')}</Column>
+                <Column align="right" className="text-sm text-neutral-500">{t('table.headers.expired-date')}</Column>
               </Row>
 
               {domains.map((domain, index) => (
@@ -103,16 +100,13 @@ export default function DomainExpired({
             </Section>
 
             <Text className="text-sm leading-6 text-neutral-600">
-              If you own any of these {pluralize("domain", domains.length)}{" "}
-              again in the future, you can add them to your workspace anytime in
-              the{" "}
-              <Link
-                href={`https://app.dub.co/${workspace.slug}/links/domains`}
-                className="font-semibold text-black underline"
-              >
-                domain settings page
-              </Link>
-              .
+              {t.rich('messages.re-add-instructions', {
+                domainsLength: domains.length,
+                component0: (chunks) => <Link
+                  href={`https://app.dub.co/${workspace.slug}/links/domains`}
+                  className="font-semibold text-black underline"
+                >{chunks}</Link>
+              })}
             </Text>
 
             <Footer email={email} />

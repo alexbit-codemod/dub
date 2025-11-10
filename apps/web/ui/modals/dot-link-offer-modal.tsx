@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import useWorkspace from "@/lib/swr/use-workspace";
 import { useWorkspaceStore } from "@/lib/swr/use-workspace-store";
 import {
@@ -30,6 +31,8 @@ function DotLinkOfferModal({
   showDotLinkOfferModal: boolean;
   setShowDotLinkOfferModal: Dispatch<SetStateAction<boolean>>;
 }) {
+const t = useTranslations("dot-link-offer-modal");
+
   const [_, setDotLinkOfferDismissed, { mutateWorkspace }] =
     useWorkspaceStore<string>("dotLinkOfferDismissed");
 
@@ -57,21 +60,15 @@ function DotLinkOfferModal({
               onScroll={updateScrollProgress}
               className="scrollbar-hide max-h-[calc(100vh-350px)] overflow-y-auto pb-6 text-left"
             >
-              <h1 className="text-lg font-semibold text-neutral-900">
-                Get more from your short links
-              </h1>
-              <p className="mt-2 text-sm text-neutral-600">
-                Increase the click-through rates for your short links by
-                claiming a{" "}
-                <a
+              <h1 className="text-lg font-semibold text-neutral-900">{t('headings.get-more-from-links')}</h1>
+              <p className="mt-2 text-sm text-neutral-600">{t.rich('descriptions.claim-free-domain', {
+      component0: (chunks) => <a
                   href="https://dub.link/claim"
                   target="_blank"
                   className="cursor-help font-semibold text-neutral-800 underline decoration-dotted underline-offset-2"
-                >
-                  1-year free .link domain
-                </a>{" "}
-                on Dub.
-              </p>
+                >{chunks}</a>
+    })}
+                </p>
               <div className="mt-6 rounded-xl border border-neutral-100 bg-neutral-50 p-4">
                 <RegisterDomainForm
                   showTerms={false}
@@ -91,24 +88,20 @@ function DotLinkOfferModal({
           <Button
             type="button"
             variant="secondary"
-            text="No thanks, maybe later"
+            text={t('buttons.decline-offer')}
             onClick={() => {
               onClose();
               setShowDotLinkOfferModal(false);
             }}
           />
-          <p className="mt-6 text-pretty text-center text-xs text-neutral-500">
-            By claiming your .link domain, you agree to our{" "}
-            <a
+          <p className="mt-6 text-pretty text-center text-xs text-neutral-500">{t.rich('legal.terms-agreement', {
+      component0: (chunks) => <a
               href="https://dub.co/help/article/free-dot-link-domain#terms-and-conditions"
               target="_blank"
               className="underline transition-colors hover:text-neutral-700"
-            >
-              terms
-            </a>
-            .<br />
-            After the first year, your renewal is $12/year.
-          </p>
+            >{chunks}</a>
+    })}
+            <br />{t('pricing.renewal-cost')}</p>
         </div>
       </div>
     </Modal>
@@ -137,6 +130,8 @@ export function useDotLinkOfferModal() {
 }
 
 export function Hero() {
+const t = useTranslations("dot-link-offer-modal");
+
   const { slug } = useWorkspace();
 
   return (
@@ -159,8 +154,7 @@ export function Hero() {
             <div className="overflow-hidden">
               <div className="flex items-center gap-1.5 sm:gap-2.5">
                 <span className="truncate text-sm font-medium">
-                  {slugify(slug || "acme")}.link
-                </span>
+                  {slugify(slug || "acme")}{t('domain.link-extension')}</span>
               </div>
               <div className="mt-1 flex items-center gap-1 text-xs">
                 <ArrowTurnRight2 className="h-3 w-3 text-neutral-400" />

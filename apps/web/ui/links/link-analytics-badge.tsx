@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { useCheckFolderPermission } from "@/lib/swr/use-folder-permissions";
 import useWorkspace from "@/lib/swr/use-workspace";
 import {
@@ -34,6 +35,8 @@ export function LinkAnalyticsBadge({
   url?: string;
   sharingEnabled?: boolean;
 }) {
+const t = useTranslations("link-analytics-badge");
+
   const { slug, plan } = useWorkspace();
   const { domain, key, trackConversion, clicks, leads, saleAmount } = link;
 
@@ -115,17 +118,16 @@ export function LinkAnalyticsBadge({
               </div>
             ))}
             <p className="text-xs leading-none text-neutral-400">
-              {link.lastClicked
-                ? `Last clicked ${timeAgo(link.lastClicked, {
-                    withAgo: true,
-                  })}`
-                : "No clicks yet"}
+              {link.lastClicked 
+                ? t('status.last-clicked', { timeAgo: timeAgo(link.lastClicked, { withAgo: true }) })
+                : t('status.no-clicks')
+              }
             </p>
 
             {sharingEnabled && (
               <div className="inline-flex items-start justify-start gap-2">
                 <Button
-                  text={link.dashboardId ? "Edit sharing" : "Share dashboard"}
+                  text={link.dashboardId ? t('buttons.edit-sharing') : t('buttons.share-dashboard')}
                   className="h-7 w-full px-2"
                   onClick={() => {
                     setShowShareDashboardModal(true);

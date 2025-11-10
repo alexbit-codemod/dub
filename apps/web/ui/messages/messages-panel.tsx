@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { Message, PartnerProps, ProgramProps } from "@/lib/types";
 import {
   AnimatedSizeContainer,
@@ -41,6 +42,8 @@ export function MessagesPanel({
   placeholder?: string;
   error?: any;
 }) {
+const t = useTranslations("messages-panel");
+
   const { isMobile } = useMediaQuery();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -224,9 +227,7 @@ export function MessagesPanel({
           </div>
         </div>
       ) : error ? (
-        <div className="text-content-subtle flex size-full items-center justify-center text-sm font-medium">
-          Failed to load messages
-        </div>
+        <div className="text-content-subtle flex size-full items-center justify-center text-sm font-medium">{t('errors.failed-to-load')}</div>
       ) : (
         <div className="flex size-full items-center justify-center">
           <LoadingSpinner />
@@ -294,6 +295,8 @@ function MessageAvatar({
   program?: Pick<ProgramProps, "logo" | "name"> | null;
   message: Message;
 }) {
+const t = useTranslations("messages-panel");
+
   const isCampaign = message.type === "campaign";
   const avatarName = !isCampaign ? sender?.name : program?.name;
   const avatarImage = !isCampaign ? sender?.image : program?.logo;
@@ -303,7 +306,7 @@ function MessageAvatar({
       <div className="relative shrink-0">
         <img
           src={avatarImage ?? `${OG_AVATAR_URL}${avatarName}`}
-          alt={`${avatarName} avatar`}
+          alt={t('accessibility.user-avatar', { "avatarName": avatarName })}
           className="size-8 rounded-full"
           draggable={false}
         />
@@ -311,7 +314,7 @@ function MessageAvatar({
         {!isCampaign && program?.logo && !message.senderPartnerId && (
           <img
             src={program?.logo}
-            alt="program logo"
+            alt={t('accessibility.program-logo')}
             className="absolute -bottom-0.5 -right-0.5 size-3.5 rounded-full border border-white"
           />
         )}
@@ -337,6 +340,8 @@ function MessageHeader({
   showStatusIndicator: boolean;
   program?: Pick<ProgramProps, "logo" | "name"> | null;
 }) {
+const t = useTranslations("messages-panel");
+
   const isCampaign = message.type === "campaign";
   const name = isCampaign ? program?.name : sender?.name;
 
@@ -354,9 +359,7 @@ function MessageHeader({
                 <span className="text-content-default text-xs font-medium">
                   •
                 </span>
-                <span className="text-content-default text-xs font-medium">
-                  Email sent
-                </span>
+                <span className="text-content-default text-xs font-medium">{t('labels.email-sent')}</span>
               </>
             )}
           </>
@@ -395,6 +398,8 @@ function CampaignMessage({
   isNew: boolean;
   program?: Pick<ProgramProps, "logo" | "name"> | null;
 }) {
+const t = useTranslations("messages-panel");
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -459,7 +464,7 @@ function CampaignMessage({
             </div>
 
             <div className="flex shrink-0 items-center gap-1 text-xs font-semibold">
-              <p>{isExpanded ? "Hide" : "Show"} email</p>
+              <p>{t('buttons.toggle-email-visibility', { isExpanded })}</p>
               <ChevronRight
                 className={cn(
                   "size-3.5 transition-transform duration-200",
