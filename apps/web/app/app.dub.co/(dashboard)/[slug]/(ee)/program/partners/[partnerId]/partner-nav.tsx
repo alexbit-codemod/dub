@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { usePartnerCommentsCount } from "@/lib/swr/use-partner-comments-count";
 import useWorkspace from "@/lib/swr/use-workspace";
@@ -18,6 +20,8 @@ import { useParams, usePathname } from "next/navigation";
 import { useEffect, useId, useMemo, useRef } from "react";
 
 export function PartnerNav() {
+const t = useTranslations("partner-nav");
+
   const pathname = usePathname();
   const { partnerId } = useParams() as { partnerId: string };
   const { slug: workspaceSlug } = useWorkspace();
@@ -145,7 +149,7 @@ export function PartnerNav() {
           )}
         >
           <InvoiceDollar className="mr-2 size-4" />
-          <span>Commissions</span>
+          <span>{t('links.commissions')}</span>
           <ArrowUpRight2 className="text-content-subtle ml-1 size-3.5" />
         </Link>
       </div>

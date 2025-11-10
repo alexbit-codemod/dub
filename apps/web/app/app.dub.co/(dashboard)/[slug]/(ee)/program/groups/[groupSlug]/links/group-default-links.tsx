@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { useApiMutation } from "@/lib/swr/use-api-mutation";
 import useGroup from "@/lib/swr/use-group";
@@ -18,6 +20,8 @@ import { useDefaultPartnerLinkSheet } from "./add-edit-group-default-link-sheet"
 import { PartnerLinkPreview } from "./partner-link-preview";
 
 export function GroupDefaultLinks() {
+const t = useTranslations("group-default-links");
+
   const { defaultLinks, loading: loadingDefaultLinks } =
     usePartnerGroupDefaultLinks();
 
@@ -30,18 +34,14 @@ export function GroupDefaultLinks() {
       <div className="flex items-center justify-between">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-content-emphasis text-lg font-semibold leading-7">
-              Default links
-            </h3>
+            <h3 className="text-content-emphasis text-lg font-semibold leading-7">{t('headings.default-links')}</h3>
             <InfoTooltip
               content={
                 "Default links are links that are automatically created for each partner in this group. [Learn more.](https://dub.co/help/article/partner-link-settings#default-referral-links)"
               }
             />
           </div>
-          <p className="text-content-subtle text-sm font-normal leading-5">
-            Links that are automatically created for each partner in this group
-          </p>
+          <p className="text-content-subtle text-sm font-normal leading-5">{t('descriptions.auto-created-links')}</p>
         </div>
 
         <CreateDefaultLinkButton
@@ -75,12 +75,14 @@ function CreateDefaultLinkButton({
   hasReachedMaxLinks: boolean;
   isLoadingGroup: boolean;
 }) {
+const t = useTranslations("group-default-links");
+
   const { DefaultPartnerLinkSheet, setIsOpen } = useDefaultPartnerLinkSheet({});
 
   return (
     <>
       <Button
-        text="Create link"
+        text={t('buttons.create-link')}
         variant="primary"
         className="h-8 w-fit rounded-lg px-3"
         onClick={() => setIsOpen(true)}
@@ -97,6 +99,8 @@ function CreateDefaultLinkButton({
 }
 
 function DefaultLinkPreview({ link }: { link: PartnerGroupDefaultLink }) {
+const t = useTranslations("group-default-links");
+
   const { group } = useGroup();
   const { id: workspaceId } = useWorkspace();
   const [openPopover, setOpenPopover] = useState(false);
@@ -127,17 +131,13 @@ function DefaultLinkPreview({ link }: { link: PartnerGroupDefaultLink }) {
   const { setShowConfirmModal, confirmModal } = useConfirmModal({
     title: "Delete default link",
     description: (
-      <>
-        Are you sure you want to delete{" "}
-        <strong>{getPrettyUrl(getUrlWithoutUTMParams(link.url))}</strong>?
+      <>{t.rich('messages.delete-confirmation', {
+        prettyUrl: getPrettyUrl(getUrlWithoutUTMParams(link.url)),
+        component0: (chunks) => <strong>{chunks}</strong>
+      })}
         <br />
-        <br />
-        This won't affect any existing partner links, but if you recreate the
-        link, it could result in duplicate links for partners in this group.
-        <br />
-        <br />
-        If you want to change the default link, try editing it instead.
-      </>
+        <br />{t('warnings.existing-links-unaffected')}<br />
+        <br />{t('suggestions.edit-instead-of-delete')}</>
     ),
     confirmText: "Delete",
     onConfirm,
@@ -161,7 +161,7 @@ function DefaultLinkPreview({ link }: { link: PartnerGroupDefaultLink }) {
             content={
               <div className="grid w-48 grid-cols-1 gap-px p-2">
                 <Button
-                  text="Edit"
+                  text={t('buttons.edit')}
                   variant="outline"
                   onClick={() => {
                     setOpenPopover(false);
@@ -172,7 +172,7 @@ function DefaultLinkPreview({ link }: { link: PartnerGroupDefaultLink }) {
                   loading={isSubmitting}
                 />
                 <Button
-                  text="Delete"
+                  text={t('buttons.delete')}
                   variant="danger-outline"
                   onClick={() => {
                     setOpenPopover(false);
@@ -232,16 +232,14 @@ function DefaultLinkPreviewSkeleton() {
 }
 
 function NoDefaultLinks() {
+const t = useTranslations("group-default-links");
+
   return (
     <div className="flex h-[200px] flex-col items-center justify-center gap-6 rounded-lg bg-neutral-50 p-4">
       <Hyperlink className="text-content-emphasis size-6" />
       <div className="flex flex-col gap-1 text-center">
-        <h2 className="text-content-emphasis text-base font-medium">
-          Default links
-        </h2>
-        <p className="text-content-subtle text-sm">
-          No default links have been created yet
-        </p>
+        <h2 className="text-content-emphasis text-base font-medium">{t('empty-state.heading')}</h2>
+        <p className="text-content-subtle text-sm">{t('empty-state.description')}</p>
       </div>
     </div>
   );

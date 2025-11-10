@@ -1,0 +1,320 @@
+{
+  "webhook-failed-email": {
+    "preview": {
+      "webhook-failing": "Webhook is failing to deliver"
+    },
+    "alt": {
+      "dub-logo": "Dub"
+    },
+    "headings": {
+      "webhook-failing": "Webhook is failing to deliver"
+    },
+    "messages": {
+      "failure-warning": "Your webhook <component0>{webhook.url}</component0> has failed to deliver {webhookConsecutiveFailures} times and will be disabled after {webhookDisableThreshold} consecutive failures.",
+      "review-instructions": "Please review the webhook details and update the URL if necessary to restore functionality."
+    },
+    "buttons": {
+      "edit-webhook": "Edit Webhook"
+    }
+  },
+  "partner-application-approved-email": {
+    "preview": {
+      "application-approved": "Your application to join {programName}''s partner program has been approved!"
+    },
+    "headings": {
+      "congratulations": "Congratulations, {partnerName}!",
+      "getting-started": "Getting Started"
+    },
+    "messages": {
+      "application-approved-description": "Your application to join <component0>{programName}''s</component0> partner program has been approved. You can now start promoting their products and earning commissions.",
+      "support-contact": "If you have any questions about the program please don't hesitate to <component0>reach out to the {programName} team ↗</component0> .",
+      "excited-partnership": "We're excited to have you as a partner and look forward to your success!"
+    },
+    "instructions": {
+      "find-referral-links": "1. Find your unique referral links in the <component0>Links</component0> section.",
+      "share-referral-links": "2. Share your referral links on your website, blog, social media, or email newsletters.",
+      "track-performance-earnings": "3. Track your <component0>link performance</component0> and <component1>earnings</component1> in real-time.",
+      "learn-dashboard-navigation": "4. Learn how to <component0>navigate the program dashboard</component0> and get the most out of your program.",
+      "connect-stripe-payouts": "5. Connect your Stripe account to <component0>enable payouts</component0> ."
+    },
+    "buttons": {
+      "go-to-dashboard": "Go to your dashboard"
+    }
+  },
+  "domain-expired-email": {
+    "preview": {
+      "text": "Domain expiration"
+    },
+    "brand": {
+      "name": "Dub"
+    },
+    "headings": {
+      "main-title": "Domain expiration"
+    },
+    "messages": {
+      "expiration-notice": "The following {domainsLength,plural,one{domain} other{domains}} have expired and are no longer available to use with your workspace <component0>{workspace.name}</component0> .",
+      "re-add-instructions": "If you own any of these {domainsLength,plural,one{domain} other{domains}} again in the future, you can add them to your workspace anytime in the <component0>domain settings page</component0> ."
+    },
+    "table": {
+      "headers": {
+        "domain": "Domain",
+        "expired-date": "Expired on"
+      }
+    }
+  },
+  "create-workspace-form": {
+    "labels": {
+      "workspace-name": "Workspace name",
+      "workspace-slug": "Workspace slug",
+      "workspace-logo": "Workspace logo"
+    },
+    "placeholders": {
+      "workspace-name": "Acme, Inc.",
+      "workspace-slug": "acme"
+    },
+    "prefixes": {
+      "workspace-slug-domain": "app.{processEnvNextPublicAppDomain}"
+    },
+    "descriptions": {
+      "slug-changeable": "You can change this later in your workspace settings.",
+      "logo-recommended-size": "Recommended size: 160x160px"
+    },
+    "buttons": {
+      "upload-image": "Upload image",
+      "create-workspace": "Create workspace"
+    }
+  },
+  "program-color-picker": {
+    "accessibility": {
+      "select-color-instruction": "Select a color"
+    },
+    "inputs": {
+      "default-color-placeholder": "# Default"
+    }
+  },
+  "commissions-block": {
+    "errors": {
+      "failed-to-load-data": "Failed to load data"
+    },
+    "messages": {
+      "no-commissions-found": "No commissions found"
+    },
+    "accessibility": {
+      "partner-avatar-alt": "{partnerName} avatar"
+    }
+  },
+  "remove-scim-modal": {
+    "images": {
+      "workspace-logo-alt": "Workspace logo",
+      "provider-logo-alt": "{currentProviderName} logo"
+    },
+    "headings": {
+      "remove-directory": "Remove SCIM Directory"
+    },
+    "messages": {
+      "removal-confirmation": "This will remove the currently configured SCIM directory from your workspace. Are you sure you want to continue?"
+    },
+    "labels": {
+      "provider-scim-title": "{currentProviderName} SCIM",
+      "provider-scim-status": "{currentProviderName} SCIM is configured"
+    },
+    "buttons": {
+      "confirm-remove": "Confirm remove"
+    }
+  },
+  "dot-link-offer-modal": {
+    "headings": {
+      "get-more-from-links": "Get more from your short links"
+    },
+    "descriptions": {
+      "claim-free-domain": "Increase the click-through rates for your short links by claiming a <component0>1-year free .link domain</component0> on Dub."
+    },
+    "buttons": {
+      "decline-offer": "No thanks, maybe later"
+    },
+    "legal": {
+      "terms-agreement": "By claiming your .link domain, you agree to our <component0>terms</component0> ."
+    },
+    "pricing": {
+      "renewal-cost": "After the first year, your renewal is $12/year."
+    },
+    "domain": {
+      "link-extension": ".link"
+    }
+  },
+  "messages-panel": {
+    "errors": {
+      "failed-to-load": "Failed to load messages"
+    },
+    "accessibility": {
+      "user-avatar": "{avatarName} avatar",
+      "program-logo": "program logo"
+    },
+    "labels": {
+      "email-sent": "Email sent"
+    },
+    "buttons": {
+      "toggle-email-visibility": "{isExpanded,select,true{Hide} other{Show}} email"
+    }
+  },
+  "link-analytics-badge": {
+    "status": {
+      "last-clicked": "Last clicked {timeAgo}",
+      "no-clicks": "No clicks yet"
+    },
+    "buttons": {
+      "edit-sharing": "Edit sharing",
+      "share-dashboard": "Share dashboard"
+    }
+  },
+  "stripe-integration-guide": {
+    "status": {
+      "installed": "Stripe integration installed"
+    },
+    "labels": {
+      "required-step": "Required first step"
+    },
+    "buttons": {
+      "install": "Install Stripe integration"
+    }
+  },
+  "customer-details-column": {
+    "headings": {
+      "details": "Details",
+      "customer-since": "Customer since",
+      "external-id": "External ID",
+      "lifetime-value": "Lifetime value",
+      "referral-link": "Referral link",
+      "utm": "UTM"
+    },
+    "values": {
+      "no-lifetime-value": "-"
+    }
+  },
+  "analytics-events-row-menu": {
+    "actions": {
+      "copy-event-id": "Copy event ID",
+      "copy-click-id": "Copy click ID"
+    }
+  },
+  "onboarding-domain-selector": {
+    "options": {
+      "custom-domain": {
+        "title": "Connect a custom domain",
+        "description": "Already have a domain? Connect it to Dub in just a few clicks"
+      },
+      "free-link-domain": {
+        "title": "Claim a free <component0>.link</component0> domain",
+        "description": "Register a domain like <component0>{workspaceSlug}.link</component0> – free for 1 year"
+      }
+    },
+    "badges": {
+      "paid-plan-required": "Paid plan required"
+    }
+  },
+  "new-integration-page": {
+    "navigation": {
+      "back-to-integrations": "Back to integrations"
+    }
+  },
+  "partner-nav": {
+    "links": {
+      "commissions": "Commissions"
+    }
+  },
+  "group-default-links": {
+    "headings": {
+      "default-links": "Default links"
+    },
+    "descriptions": {
+      "auto-created-links": "Links that are automatically created for each partner in this group"
+    },
+    "buttons": {
+      "create-link": "Create link",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "messages": {
+      "delete-confirmation": "Are you sure you want to delete <component0>{prettyUrl}</component0>?"
+    },
+    "warnings": {
+      "existing-links-unaffected": "This won't affect any existing partner links, but if you recreate the link, it could result in duplicate links for partners in this group."
+    },
+    "suggestions": {
+      "edit-instead-of-delete": "If you want to change the default link, try editing it instead."
+    },
+    "empty-state": {
+      "heading": "Default links",
+      "description": "No default links have been created yet"
+    }
+  },
+  "analytics-partners-table": {
+    "accessibility": {
+      "country-flag-alt": "{country} flag"
+    },
+    "messages": {
+      "failed-to-load-partners": "Failed to load partners.",
+      "no-partners-found": "No partners found."
+    },
+    "table": {
+      "headers": {
+        "partner": "Partner",
+        "location": "Location",
+        "revenue": "Revenue"
+      }
+    }
+  },
+  "partner-onboarding-layout": {
+    "labels": {
+      "partners": "Partners"
+    }
+  },
+  "partner-payout-settings-sheet": {
+    "headings": {
+      "payout-settings": "Payout settings",
+      "connected-payout-account": "Connected payout account",
+      "invoice-details-optional": "Invoice details (optional)",
+      "connected-external-accounts": "Connected external accounts"
+    },
+    "messages": {
+      "currency-compliance-notice": "For compliance reasons, your payout bank account must match your local currency. Since you're based in <component0>{COUNTRIES[partner.country]}</component0> , you will need to connect a <component1>bank account</component1> to receive payouts. <component2>Learn more ↗</component2>",
+      "external-programs-notice": "These programs manage payouts externally through their own systems. <component0>Learn more</component0>"
+    },
+    "descriptions": {
+      "invoice-details": "This information is added to your payout invoices."
+    },
+    "labels": {
+      "business-name": "Business name",
+      "business-address": "Business address",
+      "business-tax-id": "Business tax ID"
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "view-program": "View program"
+    }
+  },
+  "referrals-embed-page": {
+    "buttons": {
+      "copied-link": "Copied link",
+      "copy-link": "Copy link",
+      "create-link": "Create a link",
+      "toggle-quickstart-guide": "{showQuickstart,select,true{Hide} other{Show}} starting guide"
+    },
+    "headings": {
+      "rewards": "Rewards"
+    },
+    "links": {
+      "view-terms": "View terms ↗"
+    },
+    "labels": {
+      "powered-by": "Powered by",
+      "referral-link": "Referral link"
+    }
+  },
+  "admin-commissions-page": {
+    "messages": {
+      "no-data-available": "No data available."
+    }
+  }
+}

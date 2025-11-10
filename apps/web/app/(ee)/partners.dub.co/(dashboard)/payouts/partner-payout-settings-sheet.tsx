@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { updatePartnerPayoutSettingsAction } from "@/lib/actions/partners/update-partner-payout-settings";
 import { getEffectivePayoutMode } from "@/lib/api/payouts/get-effective-payout-mode";
@@ -84,6 +86,8 @@ function PartnerPayoutSettingsSheet(props: PartnerPayoutSettingsSheetProps) {
 function PartnerPayoutSettingsSheetInner({
   setShowPartnerPayoutSettingsSheet,
 }: PartnerPayoutSettingsSheetProps) {
+const t = useTranslations("partner-payout-settings-sheet");
+
   const { partner } = usePartnerProfile();
 
   const {
@@ -122,8 +126,7 @@ function PartnerPayoutSettingsSheetInner({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex h-full flex-col">
       <div className="flex h-16 items-center justify-between border-b border-neutral-200 px-6 py-4">
-        <Sheet.Title className="flex items-center gap-1 text-lg font-semibold">
-          Payout settings{" "}
+        <Sheet.Title className="flex items-center gap-1 text-lg font-semibold">{t('headings.payout-settings')}
           <InfoTooltip
             content={
               "Learn how to set up your payout account and receive payouts. [Learn more.](https://dub.co/help/article/receiving-payouts)"
@@ -141,9 +144,7 @@ function PartnerPayoutSettingsSheetInner({
           <div className="divide-y divide-neutral-200">
             {/* Connected payout account */}
             <div className="space-y-3 pb-6">
-              <h4 className="text-base font-semibold leading-6 text-neutral-900">
-                Connected payout account
-              </h4>
+              <h4 className="text-base font-semibold leading-6 text-neutral-900">{t('headings.connected-payout-account')}</h4>
 
               {!partner?.payoutsEnabledAt ? (
                 <ConnectPayoutButton className="h-10 rounded-lg px-4 py-2" />
@@ -153,28 +154,25 @@ function PartnerPayoutSettingsSheetInner({
 
               {partner?.country &&
                 CONNECT_SUPPORTED_COUNTRIES.includes(partner.country) && (
-                  <p className="text-xs text-neutral-500">
-                    For compliance reasons, your payout bank account must match
-                    your local currency. Since you're based in{" "}
-                    <Link
+                  <p className="text-xs text-neutral-500">{t.rich('messages.currency-compliance-notice', {
+      component0: (chunks) => <Link
                       href="/profile"
                       target="_blank"
                       className="font-medium text-neutral-900 underline decoration-dotted underline-offset-2"
                     >
                       {COUNTRIES[partner.country]}
-                    </Link>{" "}
-                    , you will need to connect a{" "}
-                    <span className="font-medium text-neutral-900">
-                      {COUNTRY_CURRENCY_CODES[partner.country]} bank account
-                    </span>{" "}
-                    to receive payouts.{" "}
-                    <Link
+                    </Link>,
+      component1: (chunks) => <span className="font-medium text-neutral-900">
+                      {COUNTRY_CURRENCY_CODES[partner.country]}</span>,
+      component2: (chunks) => <Link
                       href="https://dub.co/help/article/receiving-payouts"
                       target="_blank"
                       className="font-medium text-neutral-900 underline decoration-dotted underline-offset-2"
-                    >
-                      Learn more ↗
-                    </Link>
+                    >{chunks}</Link>
+    })}
+                    
+                    
+                    
                   </p>
                 )}
             </div>
@@ -185,18 +183,12 @@ function PartnerPayoutSettingsSheetInner({
             {/* Invoice details */}
             <div className="space-y-6 py-6">
               <div>
-                <h4 className="text-base font-semibold leading-6 text-neutral-900">
-                  Invoice details (optional)
-                </h4>
-                <p className="text-sm font-medium text-neutral-500">
-                  This information is added to your payout invoices.
-                </p>
+                <h4 className="text-base font-semibold leading-6 text-neutral-900">{t('headings.invoice-details-optional')}</h4>
+                <p className="text-sm font-medium text-neutral-500">{t('descriptions.invoice-details')}</p>
               </div>
 
               <div>
-                <label className="text-sm font-medium text-neutral-900">
-                  Business name
-                </label>
+                <label className="text-sm font-medium text-neutral-900">{t('labels.business-name')}</label>
                 <div className="relative mt-1.5 rounded-md shadow-sm">
                   <input
                     className="block w-full rounded-md border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none focus:ring-neutral-500 sm:text-sm"
@@ -206,9 +198,7 @@ function PartnerPayoutSettingsSheetInner({
               </div>
 
               <div>
-                <label className="text-sm font-medium text-neutral-900">
-                  Business address
-                </label>
+                <label className="text-sm font-medium text-neutral-900">{t('labels.business-address')}</label>
                 <TextareaAutosize
                   className="mt-1.5 block w-full rounded-md border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none focus:ring-neutral-500 sm:text-sm"
                   minRows={3}
@@ -217,9 +207,7 @@ function PartnerPayoutSettingsSheetInner({
               </div>
 
               <div>
-                <label className="text-sm font-medium text-neutral-900">
-                  Business tax ID
-                </label>
+                <label className="text-sm font-medium text-neutral-900">{t('labels.business-tax-id')}</label>
                 <div className="relative mt-1.5 rounded-md shadow-sm">
                   <input
                     className="block w-full rounded-md border-neutral-300 text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none focus:ring-neutral-500 sm:text-sm"
@@ -239,14 +227,14 @@ function PartnerPayoutSettingsSheetInner({
       <div className="flex items-center justify-end gap-2 border-t border-neutral-200 p-5">
         <Button
           variant="secondary"
-          text="Cancel"
+          text={t('buttons.cancel')}
           disabled={isPending}
           className="h-8 w-fit px-3"
           onClick={() => setShowPartnerPayoutSettingsSheet(false)}
         />
 
         <Button
-          text="Save"
+          text={t('buttons.save')}
           className="h-8 w-fit px-3"
           loading={isPending}
           disabled={!isDirty}
@@ -258,6 +246,8 @@ function PartnerPayoutSettingsSheetInner({
 }
 
 function ConnectedExternalAccounts() {
+const t = useTranslations("partner-payout-settings-sheet");
+
   const { externalPayoutEnrollments } = useExternalPayoutEnrollments();
 
   if (!externalPayoutEnrollments || externalPayoutEnrollments.length === 0) {
@@ -267,9 +257,7 @@ function ConnectedExternalAccounts() {
   return (
     <div className="space-y-3 py-6">
       <div>
-        <h4 className="text-content-emphasis text-base font-semibold leading-6">
-          Connected external accounts
-        </h4>
+        <h4 className="text-content-emphasis text-base font-semibold leading-6">{t('headings.connected-external-accounts')}</h4>
       </div>
 
       <div className="space-y-2">
@@ -301,7 +289,7 @@ function ConnectedExternalAccounts() {
               <Button
                 type="button"
                 variant="secondary"
-                text="View program"
+                text={t('buttons.view-program')}
                 className="border-border-subtle h-6 rounded-md px-2 py-3.5 text-sm"
               />
             </Link>
@@ -309,15 +297,13 @@ function ConnectedExternalAccounts() {
         ))}
       </div>
 
-      <p className="text-content-subtle text-xs font-normal leading-4">
-        These programs manage payouts externally through their own systems.
-        <Link
+      <p className="text-content-subtle text-xs font-normal leading-4">{t.rich('messages.external-programs-notice', {
+      component0: (chunks) => <Link
           href="https://dub.co/help/article/receiving-payouts"
           target="_blank"
           className="ml-1 underline underline-offset-2"
-        >
-          Learn more
-        </Link>
+        >{chunks}</Link>
+    })}
       </p>
     </div>
   );
