@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import Toolbar from "@/ui/layout/toolbar/toolbar";
 import { Grid, Wordmark } from "@dub/ui";
 import { cn } from "@dub/utils";
@@ -9,6 +10,8 @@ export default function PartnerOnboardingLayout({
 }: {
   children: React.ReactNode;
 }) {
+const t = useTranslations("partner-onboarding-layout");
+
   return (
     <>
       <div className="absolute inset-0 isolate overflow-hidden bg-white">
@@ -53,9 +56,7 @@ export default function PartnerOnboardingLayout({
           <div className="pt-4">
             <Link href="https://dub.co/home" target="_blank" className="block">
               <Wordmark className="h-8" />
-              <div className="text-center text-sm font-semibold text-black/80">
-                Partners
-              </div>
+              <div className="text-center text-sm font-semibold text-black/80">{t('labels.partners')}</div>
             </Link>
           </div>
         </div>

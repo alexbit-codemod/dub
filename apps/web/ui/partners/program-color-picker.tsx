@@ -1,4 +1,6 @@
 "use client";
+import { useTranslations } from "next-intl";
+
 
 import { RAINBOW_CONIC_GRADIENT } from "@/ui/colors";
 import { Popover, Tooltip } from "@dub/ui";
@@ -36,6 +38,8 @@ export function ProgramColorPicker({
   onChange: (color: string | null) => void;
   id?: string;
 }) {
+const t = useTranslations("program-color-picker");
+
   const [isOpen, setIsOpen] = useState(false);
 
   const onSelect = (color: string | null) => {
@@ -50,9 +54,7 @@ export function ProgramColorPicker({
       popoverContentClassName="-mt-4"
       content={
         <div className="grid grid-cols-6 gap-3 p-4">
-          <div className="sr-only" tabIndex={0}>
-            Select a color
-          </div>
+          <div className="sr-only" tabIndex={0}>{t('accessibility.select-color-instruction')}</div>
           <div className="col-span-6 flex items-center justify-between gap-4">
             <Swatch
               color={null}
@@ -73,7 +75,7 @@ export function ProgramColorPicker({
                 color={color ?? undefined}
                 onChange={(color) => onChange(color)}
                 prefixed={!!color}
-                placeholder="# Default"
+                placeholder={t('inputs.default-color-placeholder')}
                 style={{}}
                 size={1}
                 className="block min-w-32 shrink rounded-md border border-neutral-300 py-1.5 pl-[30px] text-neutral-900 placeholder-neutral-400 focus:border-neutral-500 focus:outline-none focus:ring-neutral-500 sm:text-sm"

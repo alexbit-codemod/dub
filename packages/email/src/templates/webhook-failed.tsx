@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { DUB_WORDMARK } from "@dub/utils";
 import {
   Body,
@@ -39,35 +40,32 @@ export default function WebhookFailed({
     disableThreshold: number;
   };
 }) {
+const t = useTranslations("webhook-failed-email");
+
   return (
     <Html>
       <Head />
-      <Preview>Webhook is failing to deliver</Preview>
+      <Preview>{t('preview.webhook-failing')}</Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white font-sans">
           <Container className="mx-auto my-10 max-w-[600px] rounded border border-solid border-neutral-200 px-10 py-5">
             <Section className="mt-8">
-              <Img src={DUB_WORDMARK} height="32" alt="Dub" />
+              <Img src={DUB_WORDMARK} height="32" alt={t('alt.dub-logo')} />
             </Section>
-            <Heading className="mx-0 my-7 p-0 text-xl font-medium text-black">
-              Webhook is failing to deliver
-            </Heading>
+            <Heading className="mx-0 my-7 p-0 text-xl font-medium text-black">{t('headings.webhook-failing')}</Heading>
             <Text className="text-sm leading-6 text-black">
-              Your webhook <strong>{webhook.url}</strong> has failed to deliver{" "}
-              {webhook.consecutiveFailures} times and will be disabled after{" "}
-              {webhook.disableThreshold} consecutive failures.
+              {t.rich('messages.failure-warning', {
+                webhookConsecutiveFailures: webhook.consecutiveFailures,
+                webhookDisableThreshold: webhook.disableThreshold,
+                component0: (chunks) => <strong>{chunks}</strong>
+              })}
             </Text>
-            <Text className="text-sm leading-6 text-black">
-              Please review the webhook details and update the URL if necessary
-              to restore functionality.
-            </Text>
+            <Text className="text-sm leading-6 text-black">{t('messages.review-instructions')}</Text>
             <Section className="mb-8 mt-8">
               <Link
                 className="rounded-lg bg-black px-6 py-3 text-center text-[12px] font-semibold text-white no-underline"
                 href={`https://app.dub.co/${workspace.slug}/settings/webhooks/${webhook.id}/edit`}
-              >
-                Edit Webhook
-              </Link>
+              >{t('buttons.edit-webhook')}</Link>
             </Section>
             <Footer email={email} />
           </Container>

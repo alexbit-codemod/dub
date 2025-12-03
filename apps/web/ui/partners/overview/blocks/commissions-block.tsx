@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import useWorkspace from "@/lib/swr/use-workspace";
 import { CommissionResponse } from "@/lib/types";
 import { AnalyticsContext } from "@/ui/analytics/analytics-provider";
@@ -9,6 +10,8 @@ import { CommissionStatusBadges } from "../../commission-status-badges";
 import { ProgramOverviewBlock } from "../program-overview-block";
 
 export function CommissionsBlock() {
+const t = useTranslations("commissions-block");
+
   const { slug: workspaceSlug } = useWorkspace();
 
   const { queryString } = useContext(AnalyticsContext);
@@ -32,13 +35,9 @@ export function CommissionsBlock() {
             <LoadingSpinner />
           </div>
         ) : error ? (
-          <div className="text-content-subtle flex size-full items-center justify-center py-4 text-xs">
-            Failed to load data
-          </div>
+          <div className="text-content-subtle flex size-full items-center justify-center py-4 text-xs">{t('errors.failed-to-load-data')}</div>
         ) : data?.length === 0 ? (
-          <div className="text-content-subtle flex size-full items-center justify-center py-4 text-xs">
-            No commissions found
-          </div>
+          <div className="text-content-subtle flex size-full items-center justify-center py-4 text-xs">{t('messages.no-commissions-found')}</div>
         ) : (
           data?.slice(0, 6).map(({ id, partner, status, earnings }) => {
             const badge = CommissionStatusBadges[status];
@@ -51,7 +50,7 @@ export function CommissionsBlock() {
                 <div className="flex min-w-0 items-center gap-2">
                   <img
                     src={partner.image || `${OG_AVATAR_URL}${partner.name}`}
-                    alt={`${partner.name} avatar`}
+                    alt={t('accessibility.partner-avatar-alt', { "partnerName": partner.name })}
                     className="size-4 rounded-full"
                   />
                   <span className="min-w-0 truncate">{partner.name}</span>
