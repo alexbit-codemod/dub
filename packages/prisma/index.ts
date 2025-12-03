@@ -9,7 +9,7 @@ export const prisma =
   });
 
 declare global {
-  var prisma:
+  let prisma:
     | PrismaClient<{ omit: { user: { passwordHash: true } } }>
     | undefined;
 }
