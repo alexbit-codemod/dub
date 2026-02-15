@@ -34,9 +34,9 @@ const opts: JacksonOption = {
 };
 
 declare global {
-  var apiController: IConnectionAPIController | undefined;
-  var oauthController: IOAuthController | undefined;
-  var directorySyncController: IDirectorySyncController | undefined;
+  let apiController: IConnectionAPIController | undefined;
+  let oauthController: IOAuthController | undefined;
+  let directorySyncController: IDirectorySyncController | undefined;
 }
 
 export async function jackson() {
