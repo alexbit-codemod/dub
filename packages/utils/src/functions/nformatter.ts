@@ -29,7 +29,7 @@ export function nFormatter(
     { value: 1e15, symbol: "P" },
     { value: 1e18, symbol: "E" },
   ];
-  var item = lookup
+  const item = lookup
     .slice()
     .reverse()
     .find(function (item) {
